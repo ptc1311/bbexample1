@@ -14,6 +14,7 @@
 int main(int argc, char *argv[])
 {
   std::cout << "Hello from main!" << std::endl;
+  std::cout << "Hello from main!" << std::endl;
 
   function1();
   function2();

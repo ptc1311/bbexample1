@@ -8,17 +8,29 @@ incdir = include_directories(
 )
 
 srcfiles = files(
-  #'bbfunction1.c',
-  #'bbfunction2.c',
-  #'bbfunction3.c',
-  #'bbfunction4.c',
-  #'bbfunction5.c',
-  #'bbfunction6.c',
-  #'bbfunction7.c',
-  #'bbfunction8.c',
-  #'bbfunction9.c',
-  #'bbfunction10.c',
+  #'bbfunction1.cpp',
+  #'bbfunction2.cpp',
+  #'bbfunction3.cpp',
+  #'bbfunction4.cpp',
+  #'bbfunction5.cpp',
+  #'bbfunction6.cpp',
+  #'bbfunction7.cpp',
+  #'bbfunction8.cpp',
+  #'bbfunction9.cpp',
+  #'bbfunction10.cpp',
 )
+
+# Find the dependency modules, if not found use meson wrap to get them
+# automatically during the configure step
+_dependencies = []
+
+nlohmann_json = dependency('nlohmann_json', version: '>=3.9.2', required: false, include_type: 'system')
+if not nlohmann_json.found()
+    nlohmann_json_proj = subproject('nlohmann_json', required: true)
+    nlohmann_json = nlohmann_json_proj.get_variable('nlohmann_json_dep')
+    nlohmann_json = nlohmann_json.as_system('system')
+endif
+_dependencies += nlohmann_json
 
 # 副程式庫
 bblib = static_library(
@@ -31,4 +43,5 @@ executable(
   'bbexample.cpp',
   include_directories : incdir,
   link_with: bblib,
+  dependencies: _dependencies,
 )
