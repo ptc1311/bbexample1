@@ -44,4 +44,6 @@ executable(
   include_directories : incdir,
   link_with: bblib,
   dependencies: _dependencies,
+  install: true,
+  install_dir: '/usr/bin'
 )
