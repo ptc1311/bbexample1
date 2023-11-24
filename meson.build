@@ -1,5 +1,14 @@
 project('bbexample', 'cpp',
-        version : '0.0.1')
+        version : '0.0.1',
+        meson_version: '>=1.1.1',
+        default_options: [
+            'cpp_std=c++20',
+            ]
+        )
+
+# Validate the c++ Standard
+
+# Get compiler and default build type
 
 # Include Directories
 
@@ -31,6 +40,15 @@ if not nlohmann_json.found()
     nlohmann_json = nlohmann_json.as_system('system')
 endif
 _dependencies += nlohmann_json
+
+sdbusplus = dependency('sdbusplus', required : false, include_type: 'system')
+if not sdbusplus.found()
+  sdbusplus_proj = subproject('sdbusplus', required: true)
+  sdbusplus = sdbusplus_proj.get_variable('sdbusplus_dep')
+  sdbusplus = sdbusplus.as_system('system')
+endif
+_dependencies += sdbusplus
+
 
 # 副程式庫
 bblib = static_library(
