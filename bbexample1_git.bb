@@ -8,13 +8,12 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=96af5705d6f64a88e035781ef00e98a8 \
                     file://subprojects/nlohmann_json-3.11.2/LICENSE.MIT;md5=f969127d7b7ed0a8a63c2bbeae002588"
 
+SRC_URI = "git://git@github.com/ptc1311/bbexample1.git;protocol=ssh;branch=master"
+
 DEPENDS = " \
     sdbusplus \
     nlohmann-json \
 "
-
-
-SRC_URI = "git://github.com/ptc1311/bbexample1.git;protocol=https;branch=master"
 
 # Modify these as desired
 PV = "1.0+git"
