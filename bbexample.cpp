@@ -50,8 +50,8 @@ int main(int argc, char *argv[])
     printf("%d\n", *localPInt);
 
     function1();
-    /*function2();
-    function3();
+    function2();
+    /*function3();
     function4();
     function5();
     function6();
